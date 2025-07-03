@@ -38,5 +38,13 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "assets/*": ["assets/*"]
+    }
   }
+
 }
