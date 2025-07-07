@@ -17,11 +17,8 @@ export default function HomeScreen({navigation}: {navigation: HomeScreenNavigati
       "Explore the expert lawyers with ease"</Text>
       <View style={styles.columnView}>
         <Pressable style={styles.loginButtonPressable} onPress={()=>navigation.navigate("LoginScreen")} ><Text style={styles.buttonText}>Login</Text></Pressable>
-<Pressable style={styles.signUpButtonPressable} onPress={()=>navigation.navigate("SignUpScreen")}>
-  <Text style={styles.quoteText}>Sign Up</Text>
-</Pressable>      
-</View>
-   </View>
+        <Pressable style={styles.signUpButtonPressable} onPress={()=>navigation.navigate("SignUpScreen")}><Text style={styles.quoteText}>Sign Up</Text></Pressable></View>
+      </View>
   );
 }
 
