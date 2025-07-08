@@ -1,74 +1,87 @@
-import React, { useState } from 'react';
-import { ActivityIndicator, Text, View, StyleSheet, Button, Image, Pressable, TextInput, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, Text, View, Pressable} from "react-native";
+import myImage from './assets/app_logo.jpeg';
+
 
 function App() {
-  const [number, setNumber] = useState('');
-
-  function alert(_arg0: string): void {
-    throw new Error('Function not implemented.');
-  }
-
-  function onChangeNumber(text: string): void {
-    setNumber(text);
-  }
+  
 
   return (
    <View style={styles.container}>
-    <Text>Hello World!</Text>
-    <ActivityIndicator />
-    <Text>Loading...</Text>
-<Button
-  onPress={() => alert('Button Pressed!')}
-  title="Learn More"
-  color="#841584"
-  accessibilityLabel="Learn more about this purple button"
-/>
-<Image
-        style={styles.tinylogo}
-        source={{
-          uri: 'https://reactnative.dev/img/tiny_logo.png',
-        }}
-      />
-      <Pressable onPress={() => alert('Pressable Pressed!')}>
-  <Text>I'm pressable!</Text>
-</Pressable>
-<TextInput
-          style={styles.input}
-          onChangeText={onChangeNumber}
-          value={number}
-          placeholder="useless placeholder"
-          keyboardType="numeric"
-        />
-        <TouchableOpacity style={styles.button} onPress={() => alert('TouchableOpacity Pressed!')}>
-          <Text>Press Here</Text>
-        </TouchableOpacity>
+    <Image
+      style={styles.tinylogo}
+     source={myImage}
+    />
+    <Text style={styles.text}>
+      "Explore the expert lawyers with ease"</Text>
+      <View style={styles.view2}>
+        <Pressable style={styles.Pressable} ><Text style={styles.text}>Login</Text></Pressable>
+        <Pressable style={styles.Pressable2} ><Text style={styles.text2}>Sign Up</Text></Pressable>
+      </View>
    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: 'white',
     flex: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
   },
   text: {
     fontSize: 20,
   },
-  tinylogo: {
-    width: 50,
-    height: 50,
+  text2: {
+    fontSize: 20,
+    color: 'white',
   },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
+  tinylogo: {
+    margin: 140,
+    borderCurve: 'continuous',
+    borderRadius: 15,
+    borderWidth: 2,
+    borderColor: 'black',
+    width: 150,
+    height: 150,
+  },
+  view2: {
+    padding: 20,
+    margin: 100,
+    backgroundColor: 'dodgerblue',
+    height: 317,
+    width: 400,
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
+  
+    alignContent: 'flex-end',
+    justifyContent: 'flex-end',
   },
     button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
+    backgroundColor: 'white',
     padding: 10,
+    
+  },
+  Pressable: {
+    backgroundColor: 'white',
+    marginTop: 10,
+    marginBottom: 10,
+    padding: 10,
+    height: 60,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  Pressable2: {
+    backgroundColor: 'dodgerblue',
+    borderColor: 'white',
+    borderWidth: 2,
+    marginTop: 40,
+    marginBottom: 60,
+    padding: 10,
+    height: 60,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 export default App;
