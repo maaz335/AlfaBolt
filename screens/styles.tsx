@@ -47,6 +47,9 @@ const styles = StyleSheet.create({
   loginTouchableView: {
     width: 300,
     textAlign: 'right',
+    flexDirection: 'row', // This is the key to making it a row
+        // Optional: Add other Flexbox properties for alignment and spacing
+    justifyContent: 'space-between',
   },
   columnView: {
     padding: 20,
