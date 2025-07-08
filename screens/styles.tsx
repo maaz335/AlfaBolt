@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   mainView: {
@@ -27,15 +27,15 @@ const styles = StyleSheet.create({
     width: 150,
     height: 150,
   },
-  loginTextInput:{
-   borderRadius: 10,
-   borderWidth: 2,
-   borderColor: 'grey',
-   width: 300,
-   marginTop: 20,
-   height: 50,
-   color: 'black',
-   paddingLeft: 20,
+  loginTextInput: {
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: 'grey',
+    width: 300,
+    marginTop: 20,
+    height: 50,
+    color: 'black',
+    paddingLeft: 20,
   },
   loginTouchable: {
     marginTop: 10,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     width: 300,
     textAlign: 'right',
     flexDirection: 'row', // This is the key to making it a row
-        // Optional: Add other Flexbox properties for alignment and spacing
+    // Optional: Add other Flexbox properties for alignment and spacing
     justifyContent: 'space-between',
   },
   columnView: {
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  loginScreenButtonView:{
+  loginScreenButtonView: {
     width: 300,
     marginTop: 20,
   },
