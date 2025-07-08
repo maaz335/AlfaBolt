@@ -1,8 +1,11 @@
-import { Image, Text, TextInput, TouchableOpacity, Pressable, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import styles from "./styles";
 import myImage from '../assets/login.png';
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../App";
+import TextField from "../components/textField";
+import TouchableOpacityComponent from "../components/touchableOpacity";
+import Button from "../components/button";
 
 type LoginScreenNavigation = StackNavigationProp<RootStackParamList, "LoginScreen">;
 
@@ -12,13 +15,13 @@ export default function LoginScreen({navigation}:{navigation: LoginScreenNavigat
         <View style={styles.mainView}>
         <Image style={styles.loginImage} source={myImage}/>      
         <Text style={styles.buttonText}>Welcome Back</Text>  
-        <TextInput style={styles.loginTextInput} placeholder="Enter Email" placeholderTextColor="black"></TextInput>
-        <TextInput style={styles.loginTextInput} placeholder="Enter Password" placeholderTextColor="black"></TextInput>
+        <TextField title="Enter Email" />
+        <TextField title="Enter Password" />
         <View style={styles.loginTouchableView}>
-        <TouchableOpacity style={styles.loginTouchable} onPress={()=>navigation.navigate("SignUpScreen")}><Text style={styles.loginTouchableText}>Already have an account?</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.loginTouchable}><Text style={styles.loginTouchableText} onPress={()=>navigation.navigate("ForgetPassword")}>Forgot Password?</Text></TouchableOpacity>
+        <TouchableOpacityComponent navigation={navigation} navigationTitle="SignUpScreen" title="Don't have an Account?"/>
+        <TouchableOpacityComponent navigation={navigation} navigationTitle="ForgetPassword" title="Forget Password?"/>
         </View>
-        <View style={styles.loginScreenButtonView}><Pressable style={styles.signUpButtonPressable} onPress={()=>navigation.navigate("UserDashBoardScreen")}><Text style={styles.quoteText}>Login</Text></Pressable></View>
+        <View style={styles.loginScreenButtonView}><Button title="Login" navigation={navigation} navigationTitle="UserDashBoardScreen" pressableStyle={styles.signUpButtonPressable} textStyle={styles.quoteText}/></View>
         </View>
     );
 }

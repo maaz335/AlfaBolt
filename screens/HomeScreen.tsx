@@ -1,8 +1,9 @@
-import {  Text, View, Pressable, Image } from "react-native";
+import {  Text, View, Image } from "react-native";
 import styles from "./styles";
 import myImage from '../assets/app_logo.jpeg';
 import { RootStackParamList } from "../App";
 import { StackNavigationProp } from '@react-navigation/stack';
+import Button from "../components/button";
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
 
@@ -16,8 +17,8 @@ export default function HomeScreen({navigation}: {navigation: HomeScreenNavigati
     <Text style={styles.buttonText}>
       "Explore the expert lawyers with ease"</Text>
       <View style={styles.columnView}>
-        <Pressable style={styles.loginButtonPressable} onPress={()=>navigation.navigate("LoginScreen")} ><Text style={styles.buttonText}>Login</Text></Pressable>
-        <Pressable style={styles.signUpButtonPressable} onPress={()=>navigation.navigate("SignUpScreen")}><Text style={styles.quoteText}>Sign Up</Text></Pressable></View>
+        <Button title="Login" navigation={navigation} navigationTitle="LoginScreen" pressableStyle={styles.loginButtonPressable} textStyle={styles.buttonText}/>
+        <Button title="Sign-Up" navigation={navigation} navigationTitle="SignUpScreen" pressableStyle={styles.signUpButtonPressable} textStyle={styles.quoteText}/></View>
       </View>
   );
 }
