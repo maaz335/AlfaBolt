@@ -1,10 +1,5 @@
-import Routing from './screens/Routing';
-
-
+import Routing from './components/Routing';
 
 export default function App() {
-  return (
-    <Routing/>
-  );
+  return <Routing />;
 }
-

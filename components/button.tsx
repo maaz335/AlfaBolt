@@ -8,6 +8,7 @@ type ButtonProps = {
   };
   pressableStyle: any;
   textStyle: any;
+  onPress?: () => void;
 };
 
 const Button = ({
@@ -16,11 +17,17 @@ const Button = ({
   navigation,
   pressableStyle,
   textStyle,
+  onPress,
 }: ButtonProps) => {
   return (
     <Pressable
       style={pressableStyle}
-      onPress={() => navigation.navigate(navigationTitle)}
+      onPress={() => {
+        if (typeof onPress === 'function') {
+          onPress();
+        }
+        navigation.navigate(navigationTitle);
+      }}
     >
       <Text style={textStyle}>{title}</Text>
     </Pressable>
