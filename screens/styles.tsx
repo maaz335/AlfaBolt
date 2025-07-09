@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flex: 1,
     alignItems: 'center',
+    marginBottom: 50,
   },
   buttonText: {
     fontSize: 20,
@@ -82,6 +83,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  inputWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    // borderWidth: 1,
+    // borderRadius: 8,
+    // paddingHorizontal: 10,
+    // marginBottom: 10,
+  },
+  suffixIcon: {
+    marginLeft: 8,
+    marginTop: 13,
+  },
+  signUpScreenKeyboardAvoidingView: { flex: 1, backgroundColor: 'white' },
 });
 
 export default styles;
