@@ -1,5 +1,5 @@
 import { Image, Text, View } from 'react-native';
-import styles from './styles';
+import styles from '../components/styles';
 import myImage from '../assets/login.png';
 import TextField from '../components/textField';
 import Button from '../components/button';

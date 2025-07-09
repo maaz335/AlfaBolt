@@ -1,9 +1,9 @@
 import { Text, View, Image } from 'react-native';
-import styles from './styles';
+import styles from '../components/styles';
 import myImage from '../assets/app_logo.jpeg';
-import { RootStackParamList } from '../App';
 import { StackNavigationProp } from '@react-navigation/stack';
 import Button from '../components/button';
+import { RootStackParamList } from '../components/Routing';
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 

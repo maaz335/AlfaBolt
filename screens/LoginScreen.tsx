@@ -1,11 +1,11 @@
 import { Image, Text, View } from 'react-native';
-import styles from './styles';
+import styles from '../components/styles';
 import myImage from '../assets/login.png';
 import { StackNavigationProp } from '@react-navigation/stack';
 import TextField from '../components/textField';
 import TouchableOpacityComponent from '../components/touchableOpacity';
 import Button from '../components/button';
-import { RootStackParamList } from './Routing';
+import { RootStackParamList } from '../components/Routing';
 
 type LoginScreenNavigation = StackNavigationProp<
   RootStackParamList,

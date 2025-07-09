@@ -6,13 +6,14 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import styles from './styles';
+import styles from '../components/styles';
 import myImage from '../assets/login.png';
 import { StackNavigationProp } from '@react-navigation/stack';
 import Button from '../components/button';
 import TextField from '../components/textField';
 import TouchableOpacityComponent from '../components/touchableOpacity';
-import { RootStackParamList } from './Routing';
+import { RootStackParamList } from '../components/Routing';
+import auth from '@react-native-firebase/auth';
 
 type SignUpScreenNavigation = StackNavigationProp<
   RootStackParamList,
@@ -24,6 +25,18 @@ export default function SignUpScreen({
 }: {
   navigation: SignUpScreenNavigation;
 }) {
+
+const handleSignUp = async () => {  
+  try {
+    // Example of creating a user with Firebase Authentication
+    const email = 'mmaazahmad24@gmail.com'
+    const password = '12345678'
+    const userCredential = await auth().createUserWithEmailAndPassword(email, password);  
+    console.log('User account created & signed in!', userCredential);
+  } catch (error) {
+    console.error('Error signing up:', error);
+  }
+}
   return (
     <KeyboardAvoidingView
       style={styles.signUpScreenKeyboardAvoidingView}
@@ -75,6 +88,7 @@ export default function SignUpScreen({
           <View style={styles.loginScreenButtonView}>
             <Button
               title="Sign-Up"
+              onPress={handleSignUp}
               navigation={navigation}
               navigationTitle="Home"
               pressableStyle={styles.signUpButtonPressable}

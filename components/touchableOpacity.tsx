@@ -1,5 +1,5 @@
 import { Text, TouchableOpacity } from 'react-native';
-import styles from '../screens/styles';
+import styles from './styles';
 
 interface TouchableOpacityComponentProps {
   title: string;
