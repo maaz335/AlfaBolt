@@ -3,8 +3,8 @@ import styles from '../components/styles';
 import myImage from '../assets/login.png';
 import TextField from '../components/textField';
 import Button from '../components/button';
-import { RootStackParamList } from '../App';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../components/Routing';
 
 type ForgetPasswordNavigation = StackNavigationProp<
   RootStackParamList,
@@ -20,7 +20,7 @@ export default function ForgetPassword({
     <View style={styles.mainView}>
       <Image style={styles.loginImage} source={myImage} />
       <Text style={styles.buttonText}>Reset your Password</Text>
-      <TextField title="Enter Email" />
+      {/* <TextField title="Enter Email" /> */}
       <View style={styles.loginScreenButtonView}>
         <Button
           textStyle={styles.quoteText}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TextInput, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './styles';
@@ -7,41 +7,47 @@ interface TextFieldProps {
   title: string;
   validationType?: 'email' | 'password' | 'name' | 'phone' | 'username';
   secureTextEntry?: boolean;
+  value: string;
+  onChangeText: (text: string) => void;
 }
 
 const TextField = ({
   title,
   validationType,
   secureTextEntry = false,
+  value,
+  onChangeText,
 }: TextFieldProps) => {
-  const [value, setValue] = useState('');
   const [isSecure, setIsSecure] = useState(secureTextEntry);
   const [isValid, setIsValid] = useState(true);
 
-  const validateInput = (text: string) => {
-    let valid = true;
+  const validateInput = React.useCallback(
+    (text: string) => {
+      let valid = true;
 
-    if (validationType === 'email') {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      valid = emailRegex.test(text);
-    } else if (validationType === 'password') {
-      valid = text.length >= 6;
-    } else if (validationType === 'name') {
-      valid = text.trim().length > 3;
-    } else if (validationType === 'phone') {
-      const phoneRegex = /^\d{11}$/;
-      valid = phoneRegex.test(text);
-    } else if (validationType === 'username') {
-      const usernameRegex = /^[a-zA-Z0-9_]{3,}$/;
-      valid = usernameRegex.test(text);
-    }
-    setIsValid(valid);
-  };
+      if (validationType === 'email') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        valid = emailRegex.test(text);
+      } else if (validationType === 'password') {
+        valid = text.length >= 6;
+      } else if (validationType === 'name') {
+        valid = /^[A-Za-z ]{3,}$/.test(text.trim());
+      } else if (validationType === 'phone') {
+        const phoneRegex = /^\d{11}$/;
+        valid = phoneRegex.test(text);
+      } else if (validationType === 'username') {
+        const usernameRegex = /^[a-zA-Z0-9_]{3,}$/;
+        valid = usernameRegex.test(text);
+      }
 
-  const handleChange = (text: string) => {
-    setValue(text);
-    validateInput(text);
-  };
+      setIsValid(valid || text === '');
+    },
+    [validationType],
+  );
+
+  useEffect(() => {
+    validateInput(value);
+  }, [value, validateInput]);
 
   return (
     <View
@@ -52,7 +58,7 @@ const TextField = ({
         placeholder={title}
         value={value}
         secureTextEntry={isSecure}
-        onChangeText={handleChange}
+        onChangeText={onChangeText}
         placeholderTextColor="gray"
       />
       {/* Suffix Icon */}

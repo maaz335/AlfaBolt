@@ -1,4 +1,4 @@
-import { Image, Text, View } from 'react-native';
+import { Alert, Image, Text, View } from 'react-native';
 import styles from '../components/styles';
 import myImage from '../assets/login.png';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -6,6 +6,9 @@ import TextField from '../components/textField';
 import TouchableOpacityComponent from '../components/touchableOpacity';
 import Button from '../components/button';
 import { RootStackParamList } from '../components/Routing';
+import { useState } from 'react';
+import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
 
 type LoginScreenNavigation = StackNavigationProp<
   RootStackParamList,
@@ -17,6 +20,41 @@ export default function LoginScreen({
 }: {
   navigation: LoginScreenNavigation;
 }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert('Validation Error', 'Email and password are required.');
+      return;
+    }
+
+    try {
+      const userCredential = await auth().signInWithEmailAndPassword(
+        email,
+        password,
+      );
+      console.log('User logged in:', userCredential);
+
+      const userId = userCredential.user.uid;
+      console.log('User ID:', userId);
+      // Optionally fetch user info from database
+      const snapshot = await database().ref(`/users/${userId}`).once('value');
+      const userInfo = snapshot.val();
+
+      console.log('User logged in:', userInfo);
+      navigation.navigate('UserDashBoardScreen'); // or wherever you want
+      return;
+    } catch (error) {
+      console.error('Login error:', error);
+      const errorMessage =
+        error && typeof error === 'object' && 'message' in error
+          ? (error as { message?: string }).message
+          : 'Login failed!';
+      Alert.alert('Login Error', errorMessage || 'Something went wrong!');
+      return;
+    }
+  };
   return (
     <View style={styles.mainView}>
       <Image style={styles.loginImage} source={myImage} />
@@ -25,11 +63,15 @@ export default function LoginScreen({
         title="Enter Email"
         validationType="email"
         secureTextEntry={false}
+        value={email}
+        onChangeText={setEmail}
       />
       <TextField
         title="Enter Password"
         validationType="password"
         secureTextEntry={true}
+        value={password}
+        onChangeText={setPassword}
       />
       <View style={styles.loginTouchableView}>
         <TouchableOpacityComponent
@@ -47,9 +89,10 @@ export default function LoginScreen({
         <Button
           title="Login"
           navigation={navigation}
-          navigationTitle="UserDashBoardScreen"
+          navigationTitle=""
           pressableStyle={styles.signUpButtonPressable}
           textStyle={styles.quoteText}
+          onPress={handleLogin}
         />
       </View>
     </View>
