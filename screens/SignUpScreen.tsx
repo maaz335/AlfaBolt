@@ -36,19 +36,46 @@ export default function SignUpScreen({
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleSignUp = async () => {
-    if (
-      !name ||
-      !username ||
-      !phone ||
-      !email ||
-      !password ||
-      !confirmPassword
-    ) {
-      Alert.alert('Validation Error', 'Please fill in all fields.');
+    if (!name) {
+      Alert.alert('Validation Error', 'Name is required.');
       return;
-    }
-
-    if (password !== confirmPassword) {
+    } else if (!username) {
+      Alert.alert('Validation Error', 'Username is required.');
+      return;
+    } else if (!phone) {
+      Alert.alert('Validation Error', 'Phone number is required.');
+      return;
+    } else if (phone.length !== 11) {
+      Alert.alert(
+        'Validation Error',
+        'Phone number must be exactly 11 digits long.',
+      );
+      return;
+    } else if (!email) {
+      Alert.alert('Validation Error', 'Email is required.');
+      return;
+    } else if (!email.includes('@gmail.com')) {
+      Alert.alert('Validation Error', 'Please enter a valid Gmail address.');
+      return;
+    } else if (!password) {
+      Alert.alert('Validation Error', 'Password is required.');
+      return;
+    } else if (password.length < 6) {
+      Alert.alert(
+        'Validation Error',
+        'Password must be at least 6 characters long.',
+      );
+      return;
+    } else if (!confirmPassword) {
+      Alert.alert('Validation Error', 'Confirm Password is required.');
+      return;
+    } else if (confirmPassword.length < 6) {
+      Alert.alert(
+        'Validation Error',
+        'Confirm Password must be at least 6 characters long.',
+      );
+      return;
+    } else if (password !== confirmPassword) {
       Alert.alert('Password Error', 'Passwords do not match.');
       return;
     }

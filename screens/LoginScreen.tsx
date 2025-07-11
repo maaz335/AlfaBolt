@@ -24,35 +24,47 @@ export default function LoginScreen({
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
-    if (!email || !password) {
-      Alert.alert('Validation Error', 'Email and password are required.');
+    if (!email) {
+      Alert.alert('Validation Error', 'Email are required.');
       return;
-    }
-
-    try {
-      const userCredential = await auth().signInWithEmailAndPassword(
-        email,
-        password,
+    } else if (email && !email.includes('@gmail.com')) {
+      Alert.alert('Validation Error', 'Please enter a valid Gmail address.');
+      return;
+    } else if (!password) {
+      Alert.alert('Validation Error', 'Password are required.');
+      return;
+    } else if (password.length < 6) {
+      Alert.alert(
+        'Validation Error',
+        'Password must be at least 6 characters long.',
       );
-      console.log('User logged in:', userCredential);
-
-      const userId = userCredential.user.uid;
-      console.log('User ID:', userId);
-      // Optionally fetch user info from database
-      const snapshot = await database().ref(`/users/${userId}`).once('value');
-      const userInfo = snapshot.val();
-
-      console.log('User logged in:', userInfo);
-      navigation.navigate('UserDashBoardScreen'); // or wherever you want
       return;
-    } catch (error) {
-      console.error('Login error:', error);
-      const errorMessage =
-        error && typeof error === 'object' && 'message' in error
-          ? (error as { message?: string }).message
-          : 'Login failed!';
-      Alert.alert('Login Error', errorMessage || 'Something went wrong!');
-      return;
+    } else {
+      try {
+        const userCredential = await auth().signInWithEmailAndPassword(
+          email,
+          password,
+        );
+        console.log('User logged in:', userCredential);
+
+        const userId = userCredential.user.uid;
+        console.log('User ID:', userId);
+        // Optionally fetch user info from database
+        const snapshot = await database().ref(`/users/${userId}`).once('value');
+        const userInfo = snapshot.val();
+
+        console.log('User logged in:', userInfo);
+        navigation.navigate('UserDashBoardScreen'); // or wherever you want
+        return;
+      } catch (error) {
+        console.error('Login error:', error);
+        const errorMessage =
+          error && typeof error === 'object' && 'message' in error
+            ? (error as { message?: string }).message
+            : 'Login failed!';
+        Alert.alert('Login Error', errorMessage || 'Something went wrong!');
+        return;
+      }
     }
   };
   return (
