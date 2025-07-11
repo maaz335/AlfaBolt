@@ -96,6 +96,28 @@ const styles = StyleSheet.create({
     marginTop: 13,
   },
   signUpScreenKeyboardAvoidingView: { flex: 1, backgroundColor: 'white' },
+  userDashBoardScreenView:{
+    width: '90%',
+    height: '33%',
+    backgroundColor: 'dodgerblue',
+    elevation: 10,
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+    // marginLeft: 50,
+    // marginRight: 50,
+    // paddingRight: 50,
+  },
+  userDashBoardScreenText: {
+    fontSize: 20,
+    color: 'white',
+  },
+  userDashBoardScreenImage: {
+    width: 150,
+    height: 150,
+    marginBottom: 10,
+  },
 });
 
 export default styles;
