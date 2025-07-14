@@ -87,7 +87,6 @@ export default function SignUpScreen({
       );
       const userId = userCredential.user.uid;
 
-      // Save additional info in Realtime Database
       await database().ref(`/users/${userId}`).set({
         name,
         username,
