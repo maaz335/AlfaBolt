@@ -5,6 +5,7 @@ import SignUpScreen from '../screens/SignUpScreen';
 import LoginScreen from '../screens/LoginScreen';
 import ForgetPassword from '../screens/ForgetPasswordScreen';
 import UserDashBoardScreen from '../screens/UserDashboard';
+import LawyerFormScreen from '../screens/lawyerForm';
 
 type RootStackParamList = {
   Home: undefined;
@@ -12,6 +13,7 @@ type RootStackParamList = {
   LoginScreen: undefined;
   ForgetPassword: undefined;
   UserDashBoardScreen: undefined;
+  LawyerForm: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -28,6 +30,7 @@ const Routing = () => {
           name="UserDashBoardScreen"
           component={UserDashBoardScreen}
         />
+        <Stack.Screen name="LawyerForm" component={LawyerFormScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
