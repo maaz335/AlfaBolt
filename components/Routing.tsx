@@ -6,6 +6,7 @@ import LoginScreen from '../screens/LoginScreen';
 import ForgetPassword from '../screens/ForgetPasswordScreen';
 import UserDashBoardScreen from '../screens/UserDashboard';
 import LawyerFormScreen from '../screens/lawyerForm';
+import Options from './options';
 
 type RootStackParamList = {
   Home: undefined;
@@ -22,15 +23,36 @@ const Routing = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
-        <Stack.Screen name="ForgetPassword" component={ForgetPassword} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={Options({ title: 'Finding a Lawyer' })}
+        />
+        <Stack.Screen
+          name="SignUpScreen"
+          component={SignUpScreen}
+          options={Options({ title: 'SignUp' })}
+        />
+        <Stack.Screen
+          name="LoginScreen"
+          component={LoginScreen}
+          options={Options({ title: 'Login' })}
+        />
+        <Stack.Screen
+          name="ForgetPassword"
+          component={ForgetPassword}
+          options={Options({ title: 'Forget Password' })}
+        />
         <Stack.Screen
           name="UserDashBoardScreen"
           component={UserDashBoardScreen}
+          options={Options({ title: 'Home', backButton: false })}
         />
-        <Stack.Screen name="LawyerForm" component={LawyerFormScreen} />
+        <Stack.Screen
+          name="LawyerForm"
+          component={LawyerFormScreen}
+          options={Options({ title: 'Questionnaire'})}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
