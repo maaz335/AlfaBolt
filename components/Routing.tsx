@@ -7,6 +7,8 @@ import ForgetPassword from '../screens/ForgetPasswordScreen';
 import UserDashBoardScreen from '../screens/UserDashboard';
 import LawyerFormScreen from '../screens/lawyerForm';
 import Options from './options';
+import FlatListScreen from '../screens/FlatList';
+import SectionListScreen from '../screens/SectionList';
 
 type RootStackParamList = {
   Home: undefined;
@@ -15,6 +17,8 @@ type RootStackParamList = {
   ForgetPassword: undefined;
   UserDashBoardScreen: undefined;
   LawyerForm: undefined;
+  FlatList: undefined;
+  SectionList: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -51,7 +55,17 @@ const Routing = () => {
         <Stack.Screen
           name="LawyerForm"
           component={LawyerFormScreen}
-          options={Options({ title: 'Questionnaire'})}
+          options={Options({ title: 'Questionnaire' })}
+        />
+        <Stack.Screen
+          name="FlatList"
+          component={FlatListScreen}
+          options={Options({ title: 'Flat List' })}
+        />
+        <Stack.Screen
+          name="SectionList"
+          component={SectionListScreen}
+          options={Options({ title: 'Section List' })}
         />
       </Stack.Navigator>
     </NavigationContainer>

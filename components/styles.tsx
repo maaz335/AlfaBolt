@@ -169,6 +169,19 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: 'dodgerblue',
   },
+  FlatListTouchable: {
+    padding: 20,
+    backgroundColor: 'dodgerblue',
+    marginVertical: 5,
+  },
+  FlatListSelectedText: { color: 'white' },
+  FlatListSmall: { flexGrow: 0 },
+  SectionListHeaderText: {
+    fontWeight: 'bold',
+    marginVertical: 10,
+    fontSize: 18,
+    color: 'black',
+  },
 });
 
 export default styles;

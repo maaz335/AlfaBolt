@@ -17,6 +17,7 @@ export default function LawyerFormScreen({navigation}:{navigation: lawyerFormNav
   const [court, setCourt] = useState('Federal Shariat Court');
   const [location, setLocation] = useState('');
   const [experience, setExperience] = useState('');
+  
 
   return (
     <View style={styles.container}>
@@ -72,7 +73,7 @@ export default function LawyerFormScreen({navigation}:{navigation: lawyerFormNav
           onPress={() => setCourt(type)}
         />
       ))}
-      <Button title='Search Relevant Lawyer' navigation={navigation} navigationTitle='' pressableStyle={styles.signUpButtonPressable} textStyle={styles.quoteText}/>
+      <Button title='Search Relevant Lawyer' navigation={navigation} navigationTitle='FlatList' pressableStyle={styles.signUpButtonPressable} textStyle={styles.quoteText}/>
     </View>
   );
 }
