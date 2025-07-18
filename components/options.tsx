@@ -3,11 +3,13 @@ import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 type OptionsProps = {
   title: string;
   backButton?: boolean;
+  headerShown?: boolean;
 };
 
 const Options = ({
   title,
   backButton = true,
+  headerShown = true,
 }: OptionsProps): NativeStackNavigationOptions => {
   return {
     title,
@@ -15,6 +17,7 @@ const Options = ({
     headerStyle: { backgroundColor: 'dodgerblue' },
     headerTintColor: 'white',
     headerBackVisible: backButton,
+    headerShown: headerShown,
   };
 };
 

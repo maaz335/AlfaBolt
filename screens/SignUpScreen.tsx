@@ -8,26 +8,15 @@ import {
   Alert,
 } from 'react-native';
 import styles from '../components/styles';
-import myImage from '../assets/login.png';
-import { StackNavigationProp } from '@react-navigation/stack';
 import Button from '../components/button';
 import TextField from '../components/textField';
 import TouchableOpacityComponent from '../components/touchableOpacity';
-import { RootStackParamList } from '../components/Routing';
 import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
 import { useState } from 'react';
+import Images from '../components/images';
 
-type SignUpScreenNavigation = StackNavigationProp<
-  RootStackParamList,
-  'SignUpScreen'
->;
-
-export default function SignUpScreen({
-  navigation,
-}: {
-  navigation: SignUpScreenNavigation;
-}) {
+export default function SignUpScreen({ navigation }: { navigation: any }) {
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [phone, setPhone] = useState('');
@@ -115,7 +104,7 @@ export default function SignUpScreen({
     >
       <ScrollView>
         <View style={styles.mainView}>
-          <Image style={styles.loginImage} source={myImage} />
+          <Image style={styles.loginImage} source={Images.SignUp} />
           <Text style={styles.buttonText}>Create Account</Text>
           <TextField
             title="Enter Name"

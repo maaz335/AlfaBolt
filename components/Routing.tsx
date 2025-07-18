@@ -3,67 +3,65 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screens/HomeScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import LoginScreen from '../screens/LoginScreen';
-import ForgetPassword from '../screens/ForgetPasswordScreen';
 import UserDashBoardScreen from '../screens/UserDashboard';
 import LawyerFormScreen from '../screens/lawyerForm';
 import Options from './options';
 import FlatListScreen from '../screens/FlatList';
 import SectionListScreen from '../screens/SectionList';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import SCREENS from './screen';
+import Images from './images';
+import ForgetPassword from '../screens/ForgetPasswordScreen';
+import TabOptions from './tabOptions';
 
-type RootStackParamList = {
-  Home: undefined;
-  SignUpScreen: undefined;
-  LoginScreen: undefined;
-  ForgetPassword: undefined;
-  UserDashBoardScreen: undefined;
-  LawyerForm: undefined;
-  FlatList: undefined;
-  SectionList: undefined;
-};
-
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 const Routing = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName={SCREENS.Home}>
         <Stack.Screen
-          name="Home"
+          name={SCREENS.Home}
           component={HomeScreen}
           options={Options({ title: 'Finding a Lawyer' })}
         />
         <Stack.Screen
-          name="SignUpScreen"
+          name={SCREENS.SignUp}
           component={SignUpScreen}
           options={Options({ title: 'SignUp' })}
         />
         <Stack.Screen
-          name="LoginScreen"
+          name={SCREENS.Login}
           component={LoginScreen}
           options={Options({ title: 'Login' })}
         />
         <Stack.Screen
-          name="ForgetPassword"
+          name={SCREENS.ForgetPassword}
           component={ForgetPassword}
           options={Options({ title: 'Forget Password' })}
         />
         <Stack.Screen
-          name="UserDashBoardScreen"
-          component={UserDashBoardScreen}
-          options={Options({ title: 'Home', backButton: false })}
+          name={SCREENS.UserDashBoard}
+          component={TabNavigator}
+          options={Options({
+            title: 'Home',
+            backButton: false,
+            headerShown: false,
+          })}
         />
         <Stack.Screen
-          name="LawyerForm"
+          name={SCREENS.LawyerForm}
           component={LawyerFormScreen}
           options={Options({ title: 'Questionnaire' })}
         />
         <Stack.Screen
-          name="FlatList"
+          name={SCREENS.FlatList}
           component={FlatListScreen}
           options={Options({ title: 'Flat List' })}
         />
         <Stack.Screen
-          name="SectionList"
+          name={SCREENS.SectionList}
           component={SectionListScreen}
           options={Options({ title: 'Section List' })}
         />
@@ -72,5 +70,32 @@ const Routing = () => {
   );
 };
 
+const TabNavigator = () => {
+  return (
+    <Tab.Navigator initialRouteName={SCREENS.Home}>
+      <Tab.Screen
+        name={SCREENS.Home}
+        component={UserDashBoardScreen}
+        options={TabOptions({
+          title: Images.Home,
+        })}
+      />
+      <Tab.Screen
+        name={SCREENS.FlatList}
+        component={FlatListScreen}
+        options={TabOptions({
+          title: Images.FlatList,
+        })}
+      />
+      <Tab.Screen
+        name={SCREENS.SectionList}
+        component={SectionListScreen}
+        options={TabOptions({
+          title: Images.SectionList,
+        })}
+      />
+    </Tab.Navigator>
+  );
+};
+
 export default Routing;
-export type { RootStackParamList };
