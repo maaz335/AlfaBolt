@@ -4,20 +4,12 @@ import styles from '../components/styles';
 import CustomRadio from '../components/customRadio';
 import LawyerFormTextField from '../components/lawyerFormTextField';
 import Button from '../components/button';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../components/Routing';
 
-type lawyerFormNavigatipm = StackNavigationProp<
-  RootStackParamList,
-  'LawyerForm'
->;
-
-export default function LawyerFormScreen({navigation}:{navigation: lawyerFormNavigatipm}) {
+export default function LawyerFormScreen({ navigation }: { navigation: any }) {
   const [lawyerType, setLawyerType] = useState('Civil Lawyer');
   const [court, setCourt] = useState('Federal Shariat Court');
   const [location, setLocation] = useState('');
   const [experience, setExperience] = useState('');
-  
 
   return (
     <View style={styles.container}>
@@ -38,7 +30,7 @@ export default function LawyerFormScreen({navigation}:{navigation: lawyerFormNav
       ))}
 
       <Text style={styles.heading}>Which location's lawyer do you need?</Text>
-       <LawyerFormTextField
+      <LawyerFormTextField
         title="Enter your location"
         validationType="name"
         secureTextEntry={false}
@@ -49,7 +41,7 @@ export default function LawyerFormScreen({navigation}:{navigation: lawyerFormNav
       <Text style={styles.heading}>
         What level of experience should the lawyer have?
       </Text>
-       <LawyerFormTextField
+      <LawyerFormTextField
         title="Enter experience level"
         validationType="name"
         secureTextEntry={false}
@@ -73,7 +65,13 @@ export default function LawyerFormScreen({navigation}:{navigation: lawyerFormNav
           onPress={() => setCourt(type)}
         />
       ))}
-      <Button title='Search Relevant Lawyer' navigation={navigation} navigationTitle='FlatList' pressableStyle={styles.signUpButtonPressable} textStyle={styles.quoteText}/>
+      <Button
+        title="Search Relevant Lawyer"
+        navigation={navigation}
+        navigationTitle=""
+        pressableStyle={styles.signUpButtonPressable}
+        textStyle={styles.quoteText}
+      />
     </View>
   );
 }

@@ -1,25 +1,14 @@
 import { Alert, Image, Text, View } from 'react-native';
 import styles from '../components/styles';
-import myImage from '../assets/login.png';
-import { StackNavigationProp } from '@react-navigation/stack';
 import TextField from '../components/textField';
 import TouchableOpacityComponent from '../components/touchableOpacity';
 import Button from '../components/button';
-import { RootStackParamList } from '../components/Routing';
 import { useState } from 'react';
 import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
+import Images from '../components/images';
 
-type LoginScreenNavigation = StackNavigationProp<
-  RootStackParamList,
-  'LoginScreen'
->;
-
-export default function LoginScreen({
-  navigation,
-}: {
-  navigation: LoginScreenNavigation;
-}) {
+export default function LoginScreen({ navigation }: { navigation: any }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -69,7 +58,7 @@ export default function LoginScreen({
   };
   return (
     <View style={styles.mainView}>
-      <Image style={styles.loginImage} source={myImage} />
+      <Image style={styles.loginImage} source={Images.Login} />
       <Text style={styles.buttonText}>Welcome Back</Text>
       <TextField
         title="Enter Email"

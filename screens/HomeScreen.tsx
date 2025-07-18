@@ -1,20 +1,12 @@
 import { Text, View, Image } from 'react-native';
 import styles from '../components/styles';
-import myImage from '../assets/app_logo.jpeg';
-import { StackNavigationProp } from '@react-navigation/stack';
 import Button from '../components/button';
-import { RootStackParamList } from '../components/Routing';
+import Images from '../components/images';
 
-type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
-
-export default function HomeScreen({
-  navigation,
-}: {
-  navigation: HomeScreenNavigationProp;
-}) {
+export default function HomeScreen({ navigation }: { navigation: any }) {
   return (
     <View style={styles.mainView}>
-      <Image style={styles.appLogoImage} source={myImage} />
+      <Image style={styles.appLogoImage} source={Images.Logo} />
       <Text style={styles.buttonText}>
         "Explore the expert lawyers with ease"
       </Text>

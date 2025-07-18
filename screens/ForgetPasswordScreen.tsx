@@ -1,34 +1,22 @@
 import { Alert, Image, Text, View } from 'react-native';
 import styles from '../components/styles';
-import myImage from '../assets/login.png';
 import TextField from '../components/textField';
 import Button from '../components/button';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../components/Routing';
 import { useState } from 'react';
 import auth from '@react-native-firebase/auth';
+import Images from '../components/images';
 
-type ForgetPasswordNavigation = StackNavigationProp<
-  RootStackParamList,
-  'ForgetPassword'
->;
-
-export default function ForgetPassword({
-  navigation,
-}: {
-  navigation: ForgetPasswordNavigation;
-}) {
+export default function ForgetPassword({ navigation }: { navigation: any }) {
   const [email, setEmail] = useState('');
 
-  const handleResetPassword = async () => { 
+  const handleResetPassword = async () => {
     if (!email) {
       Alert.alert('Validation Error', 'Email is required.');
       return;
-    } else if (!email.includes('@gmail.com')) 
-    {
+    } else if (!email.includes('@gmail.com')) {
       Alert.alert('Validation Error', 'Please enter a valid Gmail address.');
       return;
-    }else{
+    } else {
       try {
         await auth().sendPasswordResetEmail(email);
         Alert.alert('Success', 'Password reset email sent successfully.');
@@ -38,11 +26,10 @@ export default function ForgetPassword({
         Alert.alert('Error', 'Failed to send password reset email.');
       }
     }
-  }
+  };
   return (
-    
     <View style={styles.mainView}>
-      <Image style={styles.loginImage} source={myImage} />
+      <Image style={styles.loginImage} source={Images.Login} />
       <Text style={styles.buttonText}>Reset your Password</Text>
       <TextField
         title="Enter Email"
