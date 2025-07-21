@@ -7,6 +7,7 @@ const SCREENS = {
   LawyerForm: 'LawyerForm',
   FlatList: 'FlatList',
   SectionList: 'SectionList',
+  Modal: 'ModalScreen',
 };
 
 export default SCREENS;

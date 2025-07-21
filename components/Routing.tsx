@@ -13,6 +13,7 @@ import SCREENS from './screen';
 import Images from './images';
 import ForgetPassword from '../screens/ForgetPasswordScreen';
 import TabOptions from './tabOptions';
+import ModalScreen from '../screens/ModalScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -72,26 +73,37 @@ const Routing = () => {
 
 const TabNavigator = () => {
   return (
-    <Tab.Navigator initialRouteName={SCREENS.Home}>
+    <Tab.Navigator initialRouteName={SCREENS.UserDashBoard}>
       <Tab.Screen
-        name={SCREENS.Home}
+        name={SCREENS.UserDashBoard}
         component={UserDashBoardScreen}
         options={TabOptions({
-          title: Images.Home,
+          title: "Home",
+          image: Images.Home,
         })}
       />
       <Tab.Screen
         name={SCREENS.FlatList}
         component={FlatListScreen}
         options={TabOptions({
-          title: Images.FlatList,
+          title: "Flat List",
+          image: Images.FlatList,
         })}
       />
       <Tab.Screen
         name={SCREENS.SectionList}
         component={SectionListScreen}
         options={TabOptions({
-          title: Images.SectionList,
+          title: "Section List",
+          image: Images.SectionList,
+        })}
+      />
+       <Tab.Screen
+        name={SCREENS.Modal}
+        component={ModalScreen}
+        options={TabOptions({
+          title: "Modal",
+          image: Images.Profile,
         })}
       />
     </Tab.Navigator>

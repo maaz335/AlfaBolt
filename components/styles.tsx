@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flex: 1,
     alignItems: 'center',
-    marginBottom: 50,
+    paddingBottom: 50,
   },
   buttonText: {
     fontSize: 20,
