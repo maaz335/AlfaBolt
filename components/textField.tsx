@@ -5,7 +5,7 @@ import styles from './styles';
 
 interface TextFieldProps {
   title: string;
-  validationType?: 'email' | 'password' | 'name' | 'phone' | 'username';
+  validationType?: 'email' | 'password' | 'name' | 'phone' | 'username'| 'number';
   secureTextEntry?: boolean;
   value: string;
   onChangeText: (text: string) => void;
@@ -37,6 +37,10 @@ const TextField = ({
         valid = phoneRegex.test(text);
       } else if (validationType === 'username') {
         const usernameRegex = /^[a-zA-Z0-9_]{3,}$/;
+        valid = usernameRegex.test(text);
+      }
+      else if (validationType === 'number') {
+        const usernameRegex = /^[0-9]{2,}$/;
         valid = usernameRegex.test(text);
       }
 
