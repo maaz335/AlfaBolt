@@ -1,20 +1,9 @@
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import styles from '../components/styles';
-import { RootStackParamList } from '../components/Routing';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { useState } from 'react';
 import Button from '../components/button';
 
-type FlatListScreenNavigation = StackNavigationProp<
-  RootStackParamList,
-  'FlatList'
->;
-
-export default function FlatListScreen({
-  navigation,
-}: {
-  navigation: FlatListScreenNavigation;
-}) {
+export default function FlatListScreen({ navigation }: { navigation: any }) {
   const [selectedItem, setSelectedItem] = useState<string>('');
 
   const data = [
