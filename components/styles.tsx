@@ -182,6 +182,20 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'black',
   },
+  signOutButton: {
+    backgroundColor: '#ff4444',
+    padding: 15,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginTop: 20,
+    marginHorizontal: 20,
+  },
+  signOutButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  initializingView: { flex: 1, justifyContent: 'center', alignItems: 'center' },
 });
 
 export default styles;

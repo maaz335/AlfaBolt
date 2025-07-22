@@ -11,16 +11,17 @@ import Images from '../components/images';
 export default function LoginScreen({ navigation }: { navigation: any }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async () => {
     if (!email) {
-      Alert.alert('Validation Error', 'Email are required.');
+      Alert.alert('Validation Error', 'Email is required.');
       return;
     } else if (email && !email.includes('@gmail.com')) {
       Alert.alert('Validation Error', 'Please enter a valid Gmail address.');
       return;
     } else if (!password) {
-      Alert.alert('Validation Error', 'Password are required.');
+      Alert.alert('Validation Error', 'Password is required.');
       return;
     } else if (password.length < 6) {
       Alert.alert(
@@ -28,34 +29,41 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
         'Password must be at least 6 characters long.',
       );
       return;
-    } else {
-      try {
-        const userCredential = await auth().signInWithEmailAndPassword(
-          email,
-          password,
-        );
-        console.log('User logged in:', userCredential);
+    }
 
-        const userId = userCredential.user.uid;
-        console.log('User ID:', userId);
-        // Optionally fetch user info from database
-        const snapshot = await database().ref(`/users/${userId}`).once('value');
-        const userInfo = snapshot.val();
+    setIsLoading(true);
+    try {
+      const userCredential = await auth().signInWithEmailAndPassword(
+        email,
+        password,
+      );
+      const userId = userCredential.user.uid;
 
-        console.log('User logged in:', userInfo);
-        navigation.navigate('UserDashBoardScreen'); // or wherever you want
-        return;
-      } catch (error) {
-        console.error('Login error:', error);
-        const errorMessage =
-          error && typeof error === 'object' && 'message' in error
-            ? (error as { message?: string }).message
-            : 'Login failed!';
-        Alert.alert('Login Error', errorMessage || 'Something went wrong!');
-        return;
+      // Optionally fetch user info from database
+      const snapshot = await database().ref(`/users/${userId}`).once('value');
+      snapshot.val();
+
+      // Reset navigation stack to prevent going back to login
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'UserDashBoard' }],
+      });
+    } catch (error: any) {
+      console.error('Login error:', error);
+      let errorMessage = 'Login failed!';
+      if (error.code === 'auth/user-not-found') {
+        errorMessage = 'No user found with this email.';
+      } else if (error.code === 'auth/wrong-password') {
+        errorMessage = 'Incorrect password.';
+      } else if (error.message) {
+        errorMessage = error.message;
       }
+      Alert.alert('Login Error', errorMessage);
+    } finally {
+      setIsLoading(false);
     }
   };
+
   return (
     <View style={styles.mainView}>
       <Image style={styles.loginImage} source={Images.Login} />
@@ -77,7 +85,7 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
       <View style={styles.loginTouchableView}>
         <TouchableOpacityComponent
           navigation={navigation}
-          navigationTitle="SignUpScreen"
+          navigationTitle="SignUp"
           title="Don't have an Account?"
         />
         <TouchableOpacityComponent
@@ -88,12 +96,13 @@ export default function LoginScreen({ navigation }: { navigation: any }) {
       </View>
       <View style={styles.loginScreenButtonView}>
         <Button
-          title="Login"
+          title={isLoading ? 'Logging in...' : 'Login'}
           navigation={navigation}
           navigationTitle=""
           pressableStyle={styles.signUpButtonPressable}
           textStyle={styles.quoteText}
           onPress={handleLogin}
+          disabled={isLoading}
         />
       </View>
     </View>
