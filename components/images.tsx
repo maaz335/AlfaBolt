@@ -8,6 +8,7 @@ const Images = {
   FlatList: require('../assets/flatList.png'),
   SectionList: require('../assets/sectionList.png'),
   Profile: require('../assets/profile.png'),
+  NoImage: require('../assets/nopic.png'),
 };
 
 export default Images;

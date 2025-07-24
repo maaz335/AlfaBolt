@@ -8,6 +8,7 @@ const SCREENS = {
   FlatList: 'FlatList',
   SectionList: 'SectionList',
   Modal: 'ModalScreen',
+  News: 'NewsScreen',
 };
 
 export default SCREENS;
