@@ -66,9 +66,9 @@ export default function LawyerFormScreen({ navigation }: { navigation: any }) {
         />
       ))}
       <Button
-        title="Search Relevant Lawyer"
+        title="News"
         navigation={navigation}
-        navigationTitle=""
+        navigationTitle="NewsScreen"
         pressableStyle={styles.signUpButtonPressable}
         textStyle={styles.quoteText}
       />

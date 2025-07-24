@@ -18,6 +18,7 @@ import TabOptions from './tabOptions';
 import ModalScreen from '../screens/ModalScreen';
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import styles from './styles';
+import NewsScreen from '../screens/NewsScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -58,6 +59,11 @@ const AppStack = () => (
       name={SCREENS.LawyerForm}
       component={LawyerFormScreen}
       options={Options({ title: 'Questionnaire' })}
+    />
+    <Stack.Screen
+      name={SCREENS.News}
+      component={NewsScreen}
+      options={Options({ title: 'News' })}
     />
   </Stack.Navigator>
 );
