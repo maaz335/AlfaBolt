@@ -1,8 +1,12 @@
-import { NavigationContainer } from '@react-navigation/native';
+import {
+  NavigationContainer,
+  DarkTheme,
+  DefaultTheme,
+} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, View, TouchableOpacity } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import LoginScreen from '../screens/LoginScreen';
@@ -19,63 +23,154 @@ import ModalScreen from '../screens/ModalScreen';
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import styles from './styles';
 import NewsScreen from '../screens/NewsScreen';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-const AuthStack = () => (
+const AuthStack = ({
+  theme,
+  toggleTheme,
+}: {
+  theme: string;
+  toggleTheme: () => void;
+}) => (
   <Stack.Navigator>
     <Stack.Screen
       name={SCREENS.Home}
       component={HomeScreen}
-      options={Options({ title: 'Finding a Lawyer' })}
+      options={{
+        ...Options({ title: 'Finding a Lawyer', theme }),
+        headerRight: () => (
+          <TouchableOpacity onPress={toggleTheme} style={{ marginLeft: 15 }}>
+            <MaterialIcons
+              name={theme === 'dark' ? 'sunny' : 'moon'}
+              size={24}
+              color={theme === 'dark' ? 'white' : 'black'}
+            />
+          </TouchableOpacity>
+        ),
+      }}
     />
     <Stack.Screen
       name={SCREENS.SignUp}
       component={SignUpScreen}
-      options={Options({ title: 'SignUp' })}
-    />
+ options={{
+        ...Options({ title: 'Sign Up', theme }),
+        headerRight: () => (
+          <TouchableOpacity onPress={toggleTheme} style={{ marginLeft: 15 }}>
+            <MaterialIcons
+              name={theme === 'dark' ? 'sunny' : 'moon'}
+              size={24}
+              color={theme === 'dark' ? 'white' : 'black'}
+            />
+          </TouchableOpacity>
+        ),
+      }}    />
     <Stack.Screen
       name={SCREENS.Login}
       component={LoginScreen}
-      options={Options({ title: 'Login' })}
-    />
+ options={{
+        ...Options({ title: 'Login', theme }),
+        headerRight: () => (
+          <TouchableOpacity onPress={toggleTheme} style={{ marginLeft: 15 }}>
+            <MaterialIcons
+              name={theme === 'dark' ? 'sunny' : 'moon'}
+              size={24}
+              color={theme === 'dark' ? 'white' : 'black'}
+            />
+          </TouchableOpacity>
+        ),
+      }}    />
     <Stack.Screen
       name={SCREENS.ForgetPassword}
       component={ForgetPassword}
-      options={Options({ title: 'Forget Password' })}
-    />
+ options={{
+        ...Options({ title: 'Forget Password', theme }),
+        headerRight: () => (
+          <TouchableOpacity onPress={toggleTheme} style={{ marginLeft: 15 }}>
+            <MaterialIcons
+              name={theme === 'dark' ? 'sunny' : 'moon'}
+              size={24}
+              color={theme === 'dark' ? 'white' : 'black'}
+            />
+          </TouchableOpacity>
+        ),
+      }}    />
   </Stack.Navigator>
 );
 
-const AppStack = () => (
+const AppStack = ({
+  theme,
+  toggleTheme,
+}: {
+  theme: string;
+  toggleTheme: () => void;
+}) => (
   <Stack.Navigator>
     <Stack.Screen
       name={SCREENS.UserDashBoard}
-      component={TabNavigator}
+      component={() => <TabNavigator theme={theme} toggleTheme={toggleTheme} />}
       options={{ headerShown: false }}
     />
     <Stack.Screen
       name={SCREENS.LawyerForm}
       component={LawyerFormScreen}
-      options={Options({ title: 'Questionnaire' })}
+      options={{
+        ...Options({ title: 'Questionnaire', theme }),
+        headerRight: () => (
+          <TouchableOpacity onPress={toggleTheme} style={{ marginLeft: 15 }}>
+            <MaterialIcons
+              name={theme === 'dark' ? 'sunny' : 'moon'}
+              size={24}
+              color={theme === 'dark' ? 'white' : 'black'}
+            />
+          </TouchableOpacity>
+        ),
+      }}
     />
     <Stack.Screen
       name={SCREENS.News}
       component={NewsScreen}
-      options={Options({ title: 'News' })}
+      options={{
+        ...Options({ title: 'News', theme }),
+        headerRight: () => (
+          <TouchableOpacity onPress={toggleTheme} style={{ marginLeft: 15 }}>
+            <MaterialIcons
+              name={theme === 'dark' ? 'sunny' : 'moon'}
+              size={24}
+              color={theme === 'dark' ? 'white' : 'black'}
+            />
+          </TouchableOpacity>
+        ),
+      }}
     />
   </Stack.Navigator>
 );
 
-const TabNavigator = () => (
-  <Tab.Navigator initialRouteName={SCREENS.UserDashBoard}>
+const TabNavigator = ({
+  theme,
+  toggleTheme,
+}: {
+  theme: any;
+  toggleTheme: () => void;
+}) => (
+  <Tab.Navigator
+    initialRouteName={SCREENS.UserDashBoard}
+    screenOptions={{
+      tabBarStyle: {
+        backgroundColor: theme === 'dark' ? '#1a1a1a' : 'white',
+      },
+    }}
+  >
     <Tab.Screen
       name={SCREENS.UserDashBoard}
       component={UserDashBoardScreen}
       options={TabOptions({
         title: 'Home',
         image: Images.Home,
+        theme,
+        toggleTheme,
       })}
     />
     <Tab.Screen
@@ -84,6 +179,8 @@ const TabNavigator = () => (
       options={TabOptions({
         title: 'Flat List',
         image: Images.FlatList,
+        theme,
+        toggleTheme,
       })}
     />
     <Tab.Screen
@@ -92,6 +189,8 @@ const TabNavigator = () => (
       options={TabOptions({
         title: 'Section List',
         image: Images.SectionList,
+        theme,
+        toggleTheme,
       })}
     />
     <Tab.Screen
@@ -100,12 +199,20 @@ const TabNavigator = () => (
       options={TabOptions({
         title: 'Modal',
         image: Images.Profile,
+        theme,
+        toggleTheme,
       })}
     />
   </Tab.Navigator>
 );
 
-const Routing = () => {
+const Routing = ({
+  theme,
+  toggleTheme,
+}: {
+  theme: string;
+  toggleTheme: () => void;
+}) => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
 
@@ -128,8 +235,12 @@ const Routing = () => {
   }
 
   return (
-    <NavigationContainer>
-      {user ? <AppStack /> : <AuthStack />}
+    <NavigationContainer theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
+      {user ? (
+        <AppStack theme={theme} toggleTheme={toggleTheme} />
+      ) : (
+        <AuthStack theme={theme} toggleTheme={toggleTheme} />
+      )}
     </NavigationContainer>
   );
 };
