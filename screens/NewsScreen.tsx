@@ -7,7 +7,6 @@ import {
   ActivityIndicator,
   TouchableOpacity,
   Linking,
-  StyleSheet,
 } from 'react-native';
 import axios from 'axios';
 import styles from '../components/styles';
@@ -36,18 +35,18 @@ export default function NewsScreen() {
 
   const renderItem = ({ item }: any) => (
     <TouchableOpacity
-      style={localStyles.card}
+      style={styles.card}
       onPress={() => Linking.openURL(item.url)}
     >
       {item.urlToImage ? (
-        <Image source={{ uri: item.urlToImage }} style={localStyles.image} />
+        <Image source={{ uri: item.urlToImage }} style={styles.image} />
       ) : (
-        <Image source={Images.NoImage} style={localStyles.image} />
+        <Image source={Images.NoImage} style={styles.image} />
       )}
-      <View style={localStyles.textContainer}>
-        <Text style={localStyles.title}>{item.title}</Text>
-        <Text style={localStyles.author}>By {item.author || 'Unknown'}</Text>
-        <Text style={localStyles.description} numberOfLines={3}>
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.author}>By {item.author || 'Unknown'}</Text>
+        <Text style={styles.description} numberOfLines={3}>
           {item.description}
         </Text>
       </View>
@@ -73,35 +72,3 @@ export default function NewsScreen() {
     </View>
   );
 }
-
-const localStyles = StyleSheet.create({
-  card: {
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    marginBottom: 15,
-    overflow: 'hidden',
-    elevation: 5,
-  },
-  image: {
-    width: '100%',
-    height: 200,
-  },
-  textContainer: {
-    padding: 10,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#000',
-    marginBottom: 5,
-  },
-  author: {
-    fontSize: 14,
-    color: 'gray',
-    marginBottom: 5,
-  },
-  description: {
-    fontSize: 14,
-    color: '#333',
-  },
-});

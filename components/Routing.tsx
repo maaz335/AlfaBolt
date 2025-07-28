@@ -6,7 +6,7 @@ import {
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, View, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import LoginScreen from '../screens/LoginScreen';
@@ -23,7 +23,7 @@ import ModalScreen from '../screens/ModalScreen';
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import styles from './styles';
 import NewsScreen from '../screens/NewsScreen';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import RoutingTouchableOpacity from './routingTouchableOpacity';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -42,61 +42,40 @@ const AuthStack = ({
       options={{
         ...Options({ title: 'Finding a Lawyer', theme }),
         headerRight: () => (
-          <TouchableOpacity onPress={toggleTheme} style={{ marginLeft: 15 }}>
-            <MaterialIcons
-              name={theme === 'dark' ? 'sunny' : 'moon'}
-              size={24}
-              color={theme === 'dark' ? 'white' : 'black'}
-            />
-          </TouchableOpacity>
+          <RoutingTouchableOpacity theme={theme} onPress={toggleTheme} />
         ),
       }}
     />
     <Stack.Screen
       name={SCREENS.SignUp}
       component={SignUpScreen}
- options={{
+      options={{
         ...Options({ title: 'Sign Up', theme }),
         headerRight: () => (
-          <TouchableOpacity onPress={toggleTheme} style={{ marginLeft: 15 }}>
-            <MaterialIcons
-              name={theme === 'dark' ? 'sunny' : 'moon'}
-              size={24}
-              color={theme === 'dark' ? 'white' : 'black'}
-            />
-          </TouchableOpacity>
+          <RoutingTouchableOpacity theme={theme} onPress={toggleTheme} />
         ),
-      }}    />
+      }}
+    />
     <Stack.Screen
       name={SCREENS.Login}
       component={LoginScreen}
- options={{
+      options={{
         ...Options({ title: 'Login', theme }),
         headerRight: () => (
-          <TouchableOpacity onPress={toggleTheme} style={{ marginLeft: 15 }}>
-            <MaterialIcons
-              name={theme === 'dark' ? 'sunny' : 'moon'}
-              size={24}
-              color={theme === 'dark' ? 'white' : 'black'}
-            />
-          </TouchableOpacity>
+          <RoutingTouchableOpacity theme={theme} onPress={toggleTheme} />
         ),
-      }}    />
+      }}
+    />
     <Stack.Screen
       name={SCREENS.ForgetPassword}
       component={ForgetPassword}
- options={{
+      options={{
         ...Options({ title: 'Forget Password', theme }),
         headerRight: () => (
-          <TouchableOpacity onPress={toggleTheme} style={{ marginLeft: 15 }}>
-            <MaterialIcons
-              name={theme === 'dark' ? 'sunny' : 'moon'}
-              size={24}
-              color={theme === 'dark' ? 'white' : 'black'}
-            />
-          </TouchableOpacity>
+          <RoutingTouchableOpacity theme={theme} onPress={toggleTheme} />
         ),
-      }}    />
+      }}
+    />
   </Stack.Navigator>
 );
 
@@ -119,13 +98,7 @@ const AppStack = ({
       options={{
         ...Options({ title: 'Questionnaire', theme }),
         headerRight: () => (
-          <TouchableOpacity onPress={toggleTheme} style={{ marginLeft: 15 }}>
-            <MaterialIcons
-              name={theme === 'dark' ? 'sunny' : 'moon'}
-              size={24}
-              color={theme === 'dark' ? 'white' : 'black'}
-            />
-          </TouchableOpacity>
+          <RoutingTouchableOpacity theme={theme} onPress={toggleTheme} />
         ),
       }}
     />
@@ -135,13 +108,7 @@ const AppStack = ({
       options={{
         ...Options({ title: 'News', theme }),
         headerRight: () => (
-          <TouchableOpacity onPress={toggleTheme} style={{ marginLeft: 15 }}>
-            <MaterialIcons
-              name={theme === 'dark' ? 'sunny' : 'moon'}
-              size={24}
-              color={theme === 'dark' ? 'white' : 'black'}
-            />
-          </TouchableOpacity>
+          <RoutingTouchableOpacity theme={theme} onPress={toggleTheme} />
         ),
       }}
     />
