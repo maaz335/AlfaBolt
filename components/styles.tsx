@@ -196,6 +196,36 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   initializingView: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  routingTouchableOpacityStyle: { marginLeft: 15 },
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    marginBottom: 15,
+    overflow: 'hidden',
+    elevation: 5,
+  },
+  image: {
+    width: '100%',
+    height: 200,
+  },
+  textContainer: {
+    padding: 10,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#000',
+    marginBottom: 5,
+  },
+  author: {
+    fontSize: 14,
+    color: 'gray',
+    marginBottom: 5,
+  },
+  description: {
+    fontSize: 14,
+    color: '#333',
+  },
 });
 
 export default styles;
